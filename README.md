@@ -28,3 +28,11 @@ pnpm build
 pnpm preview
 
 
+
+# 회사 상태 관리 패턴에서 볼 수 있던 것
+
+https://tech.trenbe.com/2022/05/25/Redux-Saga.html
+
+
+## jsx 를 js 로 전부 바꾸기
+pnpm add @vitejs/plugin-react
