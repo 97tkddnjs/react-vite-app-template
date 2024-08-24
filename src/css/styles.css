@@ -1,0 +1,31 @@
+/* Container styling */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #e9ecef;
+  }
+  
+  .footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Custom Navbar styling */
+  .navbar {
+    height: 60px; /* Adjust the height as needed */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+  }
+
+  .left-align {
+    display: flex;
+    justify-content: flex-start; /* 내부 요소들을 왼쪽으로 정렬 */
+    align-items: center; /* 내부 요소들을 수직으로 가운데 정렬 */
+  }

@@ -2,9 +2,9 @@ import { createStore, applyMiddleware } from 'redux';
 
 import createSagaMiddleware from 'redux-saga';
 
-import authReducer from './authReducer';
+import authReducer from './auth/authReducer';
 
-import authSaga from './authSaga';
+import authSaga from './auth/authSaga';
 
  
 
