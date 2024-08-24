@@ -42,13 +42,15 @@ const AddItem = () => {
                 </Form.Group>
             </Form>
                
-         
-            <Button variant="primary" onClick={()=>{}}>
-                저장
-            </Button>
-            <Button variant="secondary" onClick={navigate(-1)}>
-                닫기
-            </Button>
+            <div style={{margin: '20px'}}>
+                <Button variant="primary" onClick={()=>{}}>
+                    저장
+                </Button>
+                <Button variant="secondary" onClick={()=>navigate(-1)}>
+                    닫기
+                </Button>
+            </div>
+            
 
        </PageContent>
                    

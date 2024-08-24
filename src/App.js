@@ -20,7 +20,7 @@ const App = () => {
 
   
 
-  return (<div className="app-container">
+  return (<div >
       <NavBar />
       <Content />
       <Footer />

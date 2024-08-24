@@ -12,7 +12,7 @@ import AddItem from './page/AddItem';
 const Content = () => {
 
 
-    return (<div>        
+    return (<div className="app-container">        
         <Routes>
             <Route exact path="/" element={<Home/>} >
                 <Route path="/home" element={<Home/>} />
