@@ -46,7 +46,9 @@ const AddItem = () => {
             <Button variant="primary" onClick={()=>{}}>
                 저장
             </Button>
-            <Button variant="secondary" onClick={navigate(-1)}>
+            <Button variant="secondary" onClick={() =>{
+                console.log('working ')
+                navigate(-1)}}>
                 닫기
             </Button>
 
