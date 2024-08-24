@@ -5,10 +5,16 @@ import PageContent  from '../Atom/PageContent';
 import { useNavigate } from 'react-router-dom';
 
 const AddItem = () => {
+    
     const navigate = useNavigate();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(e.target.title.value, e);
+    }
+
     return (
        <PageContent>
-           <Form >
+           <Form  onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>제목</Form.Label>
                     <Form.Control
@@ -40,16 +46,17 @@ const AddItem = () => {
                         // onChange={handleChange}
                     />
                 </Form.Group>
+                <div style={{margin: '20px'}}>
+                    <Button variant="primary" type='submit'>
+                        저장
+                    </Button>
+                    <Button variant="secondary" onClick={()=>navigate(-1)}>
+                        닫기
+                    </Button>
+                </div>
             </Form>
                
-            <div style={{margin: '20px'}}>
-                <Button variant="primary" onClick={()=>{}}>
-                    저장
-                </Button>
-                <Button variant="secondary" onClick={()=>navigate(-1)}>
-                    닫기
-                </Button>
-            </div>
+           
             
 
        </PageContent>
