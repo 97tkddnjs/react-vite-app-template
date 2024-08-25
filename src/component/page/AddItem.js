@@ -3,13 +3,22 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import PageContent  from '../Atom/PageContent';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+// import { getQuestionForm } from '../../store/question/Action';
 
 const AddItem = () => {
     
+    const questionFormData = useSelector((state)=>state.question);
+    const dispatch = useDispatch();
+
+
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e.target.title.value, e);
+        console.log(' qoffb ', questionFormData.get('data'), ' e 자체' ,e);
+    }
+    const handleChange = (e) => {   
     }
 
     return (
@@ -41,9 +50,8 @@ const AddItem = () => {
                     <Form.Control
                         type="text"
                         placeholder="작성자 이름을 입력하세요"
-                        name="author"
-                        // value={newPost.author}
-                        // onChange={handleChange}
+                        name="writer"
+                        
                     />
                 </Form.Group>
                 <div style={{margin: '20px'}}>
