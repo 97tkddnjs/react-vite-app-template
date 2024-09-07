@@ -7,11 +7,11 @@ import { loginSuccess, logoutSuccess } from './authAction';
 function* loginSaga(action) {
 
   try {
-
+    
     // 여기에 실제 로그인 API 호출을 추가합니다.
     const user = { username: action.payload.username }; // 예시 사용자 데이터
     yield put(loginSuccess(user));
-
+    console.log('여기에 오긴 하네...')
   } catch (error) {
     console.error('Login failed', error);
   }

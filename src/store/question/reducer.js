@@ -3,15 +3,16 @@ import { fromJS } from 'immutable'
 const initialState = fromJS({
 
     data : {
-        title : '23',
+        title : '',
     
         content : '',
 
-    
-        user: null
+        writer: ''
 
-    }
-   
+    },
+
+    datasources : [] 
+    
   
   });
 
@@ -35,10 +36,21 @@ const initialState = fromJS({
       case 'QUESTION_FORM_REQUEST':
         console.log('reducer  에는 in' ,  state.get('data'))
         return state.get('data');
-    
-  
+      case 'SET_DATA':
+        return state.setIn(action.payload.path, action.payload.data);
+      case 'RESET_CREATE_DATA':
+        console.log('reset  에는 in' ,  initialState.get('data'))
+        return state.set('data', initialState.get('data'))
+      case 'CREATE_QUESTION_REQUEST':
+        console.log('create  에는 in' , action.payload.get('title') ,state.get('datasources') )
+        return  state //state.set('datasources',  state.get('datasources').push(action.payload))
+      case 'GET_QUESTION_LIST_REQUEST':
+        console.log('get  에는 in' , action.payload)
+        return state
+      case 'GET_QUESTION_LIST_SUCCESS':
+        console.log('GET_QUESTION_LIST_SUCCESS in reducer', action.payload);
+        return state.set('datasources', action.payload);
       default:
-  
         return state;
   
     }

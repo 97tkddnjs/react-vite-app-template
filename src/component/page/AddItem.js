@@ -5,6 +5,8 @@ import PageContent  from '../Atom/PageContent';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { createQuestion, resetCreateData, setData } from '../../store/question/Action';
+import { useEffect } from 'react';
 // import { getQuestionForm } from '../../store/question/Action';
 
 const AddItem = () => {
@@ -15,11 +17,23 @@ const AddItem = () => {
 
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(' qoffb ', questionFormData.get('data'), ' e 자체' ,e);
+
+        dispatch(createQuestion(questionFormData.getIn(['data'])))
+
+        dispatch(resetCreateData())
+        navigate('/')
     }
     const handleChange = (e) => {   
+    
+        const { name, value } = e.target;
+
+        dispatch(setData(['data', name], value));
+        
     }
+
+    useEffect(()=>{
+        
+    },[])
 
     return (
        <PageContent>
@@ -30,8 +44,8 @@ const AddItem = () => {
                         type="text"
                         placeholder="제목을 입력하세요"
                         name="title"
-                        // value={newPost.title}
-                        // onChange={handleChange}
+                        value={questionFormData.getIn(['data', 'title'])}
+                        onChange={handleChange}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -41,8 +55,8 @@ const AddItem = () => {
                         rows={3}
                         placeholder="내용을 입력하세요"
                         name="content"
-                        // value={newPost.content}
-                        // onChange={handleChange}
+                        value={questionFormData.getIn(['data', 'content'])}
+                        onChange={handleChange}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -50,7 +64,9 @@ const AddItem = () => {
                     <Form.Control
                         type="text"
                         placeholder="작성자 이름을 입력하세요"
+                        value={questionFormData.getIn(['data', 'writer'])}
                         name="writer"
+                        onChange={handleChange}
                         
                     />
                 </Form.Group>

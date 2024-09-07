@@ -3,20 +3,25 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import DataTable from './Atom/Table'
 import PageContent from './Atom/PageContent';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getQuestionList } from '../store/question/Action';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
 
-    const [show, setShow] = useState(false);
+  
     const [showReadOnly, setShowReadOnly] = useState(false);
-    const [posts, setPosts] = useState([]);
-    const [newPost, setNewPost] = useState({ title: '', content: '', author: '' });
+    const [questionData, setQuestionData] = useState([]);
+
     const [selectedPost, setSelectedPost] = useState(null);
+    
+    const resourcData = useSelector(state => state.question.get('datasources'));
 
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    
 
     const handleReadOnlyClose = () => setShowReadOnly(false);
     
@@ -24,17 +29,17 @@ const Home = () => {
         setSelectedPost(post);
         setShowReadOnly(true);
     };
+    useEffect(() => {
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNewPost((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = () => {
-        setPosts((prev) => [...prev, { ...newPost, date: new Date().toLocaleString(), id: prev.length + 1 }]);
-        setNewPost({ title: '', content: '', author: '' });
-        handleClose();
-    };
+        dispatch(getQuestionList());
+    }, [])
+   
+    useEffect(()=>{
+        if(resourcData){
+            // console.log('asdfsfas',resourcData)
+            setQuestionData(resourcData)
+        }
+    },[resourcData])
 
     const columns = [ { key: 1 , title : '#'}, {key: 2 , title : '제목'},{key: 3 , title : '작성자'}, {key: 4 , title :'날짜'}]
 
@@ -45,7 +50,7 @@ const Home = () => {
                 글 쓰기
             </Button>
 
-            <DataTable columns={columns} datasource={posts} onClick={handleReadOnlyShow}></DataTable>
+            <DataTable columns={columns} datasource={questionData} onClick={handleReadOnlyShow}></DataTable>
 
             
 

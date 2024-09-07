@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginRequest, logoutRequest } from '../../store/auth/authAction';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
  
 
@@ -9,9 +11,11 @@ const Auth = ({ isAuthenticated, user, loginRequest, logoutRequest }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-
+  const navigate = useNavigate();
   const handleLogin = () => {
+    console.log('login button clicked', username, password)
     loginRequest(username, password);
+    console.log('user is authenticated 3', isAuthenticated)
   };
 
  
@@ -20,7 +24,13 @@ const Auth = ({ isAuthenticated, user, loginRequest, logoutRequest }) => {
     logoutRequest();
   };
 
- 
+  useEffect(()=>{
+    console.log('user is authenticated 1111', isAuthenticated)
+    if(isAuthenticated) {
+      console.log('user is authenticated22222', isAuthenticated)
+      navigate('/')
+    }
+  }, [isAuthenticated])
 
   return (
 
@@ -63,9 +73,9 @@ const Auth = ({ isAuthenticated, user, loginRequest, logoutRequest }) => {
 
 const mapStateToProps = (state) => ({
 
-  isAuthenticated: state.isAuthenticated,
+  isAuthenticated: state.auth.isAuthenticated,
 
-  user: state.user
+  user: state.auth.user
 
 });
 
